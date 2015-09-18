@@ -105,11 +105,12 @@ public class MainActivity extends ActionBarActivity {
             String contentToWrite = strings[0];
 
             //first check if the directory exist and also the file exists or not
+            DropboxAPI.Entry entry = null;
             try {
-                DropboxAPI.Entry entry = mDBApi.metadata("/" + MY_BD_DIR, 1, null, false, null);
+               entry = mDBApi.metadata("/" + MY_BD_DIR, 1, null, false, null);
 
                     if (entry.isDir) {
-                        Log.e(TAG, "Directory exists");
+                        Log.e(TAG, "Directory exists : " + entry.fileName());
                         return true;
                     }
             } catch (DropboxException e) {
